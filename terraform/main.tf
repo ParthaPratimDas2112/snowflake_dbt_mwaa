@@ -178,20 +178,6 @@ resource "aws_iam_policy" "mwaa_execution_policy" {
   })
 }
 
-# Attach policy to role
-
-resource "aws_iam_role_policy_attachment" "cloudwatch_logs_policy_attachment" {
-  role       = aws_iam_role.mwaa_execution_role.name
-  policy_arn = "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess"
-}
-
-# Attach AWS managed AmazonMWAAServiceRolePolicy
-
-resource "aws_iam_role_policy_attachment" "mwaa_service_policy_attachment" {
-  role       = aws_iam_role.mwaa_execution_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonMWAAFullConsoleAccess"
-}
-
 # Get current account ID
 data "aws_caller_identity" "current" {}
 
